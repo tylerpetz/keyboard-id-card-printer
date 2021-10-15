@@ -10,7 +10,7 @@ const fields = {
   moreText: 'More Text'
 }
 
-const card = ref(fields)
+const card = ref({ ...fields })
 
 function print() {
   window.print()
