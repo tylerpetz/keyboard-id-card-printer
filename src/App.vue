@@ -14,7 +14,6 @@ const fields = {
 }
 const card = ref({ ...fields })
 
-
 const style = reactive({
   bgDirection: 'to left',
   bgColors: ['#555555'],
