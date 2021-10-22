@@ -1174,6 +1174,11 @@ vite@^2.6.4:
   optionalDependencies:
     fsevents "~2.3.2"
 
+vue-color-kit@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/vue-color-kit/-/vue-color-kit-1.0.5.tgz#4524be982078d4916756e480d2c9324717169738"
+  integrity sha512-PUQzqdpI7672YYuoHdTLENHldieVMis0u9g2n7NAxiLGdiaqCD/QaYtbDOvtASpN5oSIfKxQgPV+i45MOlkKnw==
+
 vue@^3.2.16:
   version "3.2.20"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.2.20.tgz#940f8aa8bf3e3be78243ca582bad41fcd45ae3e6"

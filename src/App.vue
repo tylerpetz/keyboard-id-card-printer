@@ -1,5 +1,7 @@
 <script setup>
 import { ref, computed, reactive } from 'vue'
+import { ColorPicker } from 'vue-color-kit'
+import 'vue-color-kit/dist/vue-color-kit.css'
 
 const gradientDirections = ['to top', 'to left', 'to right', 'to bottom']
 const fields = {
@@ -17,7 +19,9 @@ const style = reactive({
   bgDirection: 'to left',
   bgColors: ['#555555'],
   textColor: '#ffffff',
-  textOrientation: 'left'
+  textOrientation: 'left',
+  selectingColor: -1,
+  colorToChange: {}
 })
 
 function print() {
@@ -30,6 +34,18 @@ function addStyle() {
 
 function removeStyle() {
   style.bgColors.splice(-1)
+}
+
+function changeColor(color = '') {
+  style.colorToChange = color
+}
+
+function confirmColorChange(index, color) {
+  // console.log(color, index, selectingColor.value, colorToChange.value)
+  style.bgColors[index] = color
+  style.selectingColor = -1
+  style.colorToChange = {}
+  // console.log(color, index, selectingColor.value, colorToChange.value)
 }
 
 const cardStyles = computed(() => ({
@@ -53,7 +69,32 @@ const cardStyles = computed(() => ({
         <label class="flex flex-col items-center text-sm font-medium">
           Background
           <div class="flex items-center flex-row w-full space-x-2">
-            <input tabindex="-1" v-for="(color, index) in style.bgColors" :index="color" type="color" v-model="style.bgColors[index]" class="bg-transparent appearance-none shadow-sm h-10 w-full" />
+            <ColorPicker
+              v-show="style.selectingColor > -1"
+              theme="light"
+              :color="style.bgColors[selectingColor]"
+              :sucker-hide="true"
+              :colors-default="[]"
+              @change-color="changeColor"
+              class="border-box fixed top-4 right-4"
+              style="width: 218px;"
+            >
+              <button 
+                class="w-full text-center bg-green-400 hover:bg-green-600 text-white font-bold rounded-sm mt-4 p-1 shadow-sm"
+                type="button"
+                @click="confirmColorChange(style.selectingColor, style.colorToChange.hex)"
+              >Confirm Change</button>
+            </ColorPicker>
+            <button 
+              v-for="(color, index) in style.bgColors" :index="color"
+              class="appearance-none shadow-sm h-10 w-full" 
+              :style="`background: ${color}`"
+              @click="style.selectingColor = index"
+              type="button"
+            >
+              &nbsp;
+            </button>
+            <!-- <input tabindex="-1" v-for="(color, index) in style.bgColors" :index="color" type="color" v-model="style.bgColors[index]" class="bg-transparent appearance-none shadow-sm h-10 w-full" /> -->
             <button v-if="style.bgColors.length > 1 && style.bgColors.length < 4" @click.native="removeStyle" type="button">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />

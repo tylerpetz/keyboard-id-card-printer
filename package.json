@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.3.4",
-    "vue": "^3.2.16"
+    "vue": "^3.2.16",
+    "vue-color-kit": "^1.0.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.9.3",
