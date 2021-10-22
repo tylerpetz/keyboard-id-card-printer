@@ -75,7 +75,7 @@ const cardStyles = computed(() => ({
               :sucker-hide="true"
               :colors-default="[]"
               @change-color="changeColor"
-              class="border-box fixed top-4 right-4"
+              class="border-box fixed top-4 right-4 shadow"
               style="width: 218px;"
             >
               <button 
@@ -86,14 +86,13 @@ const cardStyles = computed(() => ({
             </ColorPicker>
             <button 
               v-for="(color, index) in style.bgColors" :index="color"
-              class="appearance-none shadow-sm h-10 w-full" 
+              class="appearance-none shadow-md h-10 w-full" 
               :style="`background: ${color}`"
               @click="style.selectingColor = index"
               type="button"
             >
               &nbsp;
             </button>
-            <!-- <input tabindex="-1" v-for="(color, index) in style.bgColors" :index="color" type="color" v-model="style.bgColors[index]" class="bg-transparent appearance-none shadow-sm h-10 w-full" /> -->
             <button v-if="style.bgColors.length > 1 && style.bgColors.length < 4" @click.native="removeStyle" type="button">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -131,7 +130,7 @@ const cardStyles = computed(() => ({
         class="card flex flex-col space-y-2 justify-center w-[502px] h-[325px] p-12 shadow-lg relative print:shadow-none print:p-16"
         :style="cardStyles"
       >
-        <div class="border border-white absolute m-4 inset-0 border-dashed hidden print:block" />
+        <div class="border absolute m-4 inset-0 border-dashed hidden print:block" :style="`border-color: ${cardStyles.color}`" />
         <div v-if="card.buildName" class="text-3xl pb-4 font-bold">{{ card.buildName }}</div>
         <div v-if="card.keyboardName" class="text-xl">{{ card.keyboardName }}</div>
         <div v-if="card.keycaps" class="text-xl">{{ card.keycaps }}</div>
