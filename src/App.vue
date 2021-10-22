@@ -140,7 +140,7 @@ const cardStyles = computed(() => ({
       </div>
       <button class="mt-4 print:hidden" @click="print">Print</button>
     </section>
-    <footer class="absolute right-0 bottom-0 text-xs p-4 flex flex-row items-center space-x-4">
+    <footer class="absolute right-0 bottom-0 text-xs p-4 flex flex-row items-center space-x-4 print:hidden">
       <a href="https://github.com/tylerpetz/keyboard-id-card-printer/issues" target="_blank">Issues</a>
     </footer>
   </main>
